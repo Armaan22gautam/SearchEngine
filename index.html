@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Search Engine</title>
+    <title>Search Engine</title>
     <style>
+        /* Your existing CSS remains unchanged */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Add background image to the body */
         body {
-            font-family: Arial, sans-serif;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             background-image: url('https://cdn.pixabay.com/photo/2022/09/21/17/02/blue-background-7470781_1280.jpg'); /* Replace with your image */
             background-size: cover;
             background-position: center;
@@ -25,17 +25,16 @@
             transition: background-color 0.3s ease-in-out;
         }
 
-        /* Apply a semi-transparent overlay on the container */
         .container {
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+            background-color: rgba(255, 255, 255, 0.2);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
             width: 100%;
             max-width: 400px;
             text-align: center;
             animation: fadeIn 0.5s ease-in-out;
-            backdrop-filter: blur(5px); /* Adds a nice blur effect */
+            backdrop-filter: blur(5px);
         }
 
         .search-container {
@@ -115,7 +114,6 @@
             transform: scale(0.95);
         }
 
-        /* Responsive Styling */
         @media screen and (max-width: 768px) {
             #search-input {
                 width: 100%;
@@ -127,7 +125,6 @@
             }
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -149,12 +146,11 @@
                 transform: translateX(0);
             }
         }
-
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Responsive Search Engine</h1>
+        <h1>Search Engine</h1>
         <div class="search-container">
             <input type="text" id="search-input" placeholder="Enter search query...">
             <button id="search-btn">Search</button>
@@ -191,11 +187,18 @@
             displaySearchHistory();
         }
 
+        // Function to perform Google search
+        function searchGoogle(query) {
+            const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            window.open(googleSearchUrl, '_blank');
+        }
+
         // Search button event listener
         searchBtn.addEventListener('click', () => {
             const query = searchInput.value.trim();
             if (query) {
                 addToHistory(query);
+                searchGoogle(query); // Open Google search
                 searchInput.value = ''; // Clear input after search
             }
         });
